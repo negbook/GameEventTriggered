@@ -1,4 +1,4 @@
-# fxserver-scaleforms
+# fxserver-GameEventTriggered
 GameEventTriggered utilities for FXServer
 
 
