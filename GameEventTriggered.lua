@@ -1,50 +1,5 @@
 local ThisIsUtilForLocalScript = true 
-CreateThread(function()
-if Config.build2189 then 
-    
-    AddEventHandler('baseevents:onPlayerKilled',function(killerID,deathData)
-        local isplayer = true
-        
-        local attackerid = killerID
-        
-        local victimName = GetPlayerName(PlayerId())
-        local FoundLastDamagedBone, LastDamagedBone = GetPedLastDamageBone(PlayerPedId())
-        local bonehash = -1 
-        if FoundLastDamagedBone then
-            bonehash = tonumber(LastDamagedBone)
-        end
-        if IsEntityAPed(attacker)  then
-            
-            TriggerServerEvent('nbk_cstyle_killfeed:SyncPlayerDead',GetPlayerServerId(attackerid), deathData.weaponhash,isplayer,bonehash,#(GetEntityCoords(PlayerPedId())-GetEntityCoords(GetPlayerPed(attackerid))))
-        else
-            
-            TriggerServerEvent('nbk_cstyle_killfeed:SyncPlayerDead',GetPlayerServerId(attackerid), deathData.weaponhash,isplayer,bonehash,#(GetEntityCoords(PlayerPedId())-GetEntityCoords(GetPlayerPed(attackerid))))
-        end
-    end)
-    AddEventHandler('baseevents:onPlayerDied',function(killerType, deathCoords)
-        local isplayer = true
-        
-        local attackerid = PlayerId()
-        
-        local victimName = GetPlayerName(PlayerId())
-        local FoundLastDamagedBone, LastDamagedBone = GetPedLastDamageBone(PlayerPedId())
-        local bonehash = -1 
-        if FoundLastDamagedBone then
-            bonehash = tonumber(LastDamagedBone)
-        end
-        if IsEntityAPed(attacker)  then
-            
-            TriggerServerEvent('nbk_cstyle_killfeed:SyncPlayerDead',GetPlayerServerId(attackerid), 0,isplayer,bonehash,#(GetEntityCoords(PlayerPedId())-GetEntityCoords(GetPlayerPed(attackerid))))
-        else
-            
-            TriggerServerEvent('nbk_cstyle_killfeed:SyncPlayerDead',GetPlayerServerId(attackerid), 0,isplayer,bonehash,#(GetEntityCoords(PlayerPedId())-GetEntityCoords(GetPlayerPed(attackerid))))
-        end
-    end)
-    
-end 
-end)
-CreateThread(function()
-if not Config.build2189 then 
+
 AddEventHandler('gameEventTriggered',function(name,args)
     GameEventTriggered(name,args)
 end)
@@ -177,5 +132,4 @@ function GameEventTriggered(eventName, data)
         end 
     end
 end
-end 
-end)
+
